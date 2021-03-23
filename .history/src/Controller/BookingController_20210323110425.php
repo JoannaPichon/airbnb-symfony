@@ -39,7 +39,7 @@ class BookingController extends AbstractController
         //      -offset (a partir de où)
         //      exemple findBy(['author'=> 44])
         $repo1 = $repo->findBy(['ad' => $ad->getId()]);
-        foreach ($repo1 as $resa) {
+        foreach ($repo as $resa) {
             $allTimeStamp = range($resa->getStartDate()->getTimestamp(), $resa->getEndDate()->getTimestamp(), 86400);
             $notAvailableDays = array_merge($notAvailableDays, $allTimeStamp);
         }
@@ -70,7 +70,10 @@ class BookingController extends AbstractController
             
             $available = true;
             foreach ($chooseDays as $day) {
-                if (array_search($day, $notAvailableDays) !== false) {
+                if (array_search($day, $notAvailableDays)) {
+                    dump('array search if ');
+                }
+                if (array_search($day, $notAvailableDays)) {
                     dump($day);
                     $available = false;
                     break;

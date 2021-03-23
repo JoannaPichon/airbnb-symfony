@@ -114,7 +114,7 @@ class AppFixtures extends Fixture
                     $endDate->setTime(0,0,0,0);
                     $booking->setAd($ad)
                             ->setBooker($user)
-                            ->setStartDate($startDate)
+                            ->setStartDate(new \DateTime("+ 5 days"))
                             ->setEndDate($endDate)
                             ->setCreatedAt(new \DateTime())
                             ->setAmount($ad->getPrice()*7)

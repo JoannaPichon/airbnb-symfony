@@ -66,11 +66,11 @@ class BookingController extends AbstractController
             
             $booking->setAmount($amount);
 
-            $chooseDays = range($booking->getStartDate()->getTimestamp(), $booking->getEndDate()->getTimestamp(), 86400);
+            $chooseDays = range($resa->getStartDate()->getTimestamp(), $resa->getEndDate()->getTimestamp(), 86400);
             
             $available = true;
             foreach ($chooseDays as $day) {
-                if (array_search($day, $notAvailableDays) !== false) {
+                if (in_array($day, $notAvailableDays) != 0) {
                     dump($day);
                     $available = false;
                     break;

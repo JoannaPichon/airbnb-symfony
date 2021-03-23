@@ -70,6 +70,9 @@ class BookingController extends AbstractController
             
             $available = true;
             foreach ($chooseDays as $day) {
+                if (array_search($day, $notAvailableDays)) {
+                    dump('array search if ');
+                }
                 if (array_search($day, $notAvailableDays) !== false) {
                     dump($day);
                     $available = false;

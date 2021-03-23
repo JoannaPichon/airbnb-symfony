@@ -41,7 +41,7 @@ class BookingController extends AbstractController
         $repo1 = $repo->findBy(['ad' => $ad->getId()]);
         foreach ($repo1 as $resa) {
             $allTimeStamp = range($resa->getStartDate()->getTimestamp(), $resa->getEndDate()->getTimestamp(), 86400);
-            $notAvailableDays = array_merge($notAvailableDays, $allTimeStamp);
+            $notAvailableDays = array_merge($notAvailableDays, $allTimeStamp );
         }
 
         // fin liste days not available
@@ -66,11 +66,11 @@ class BookingController extends AbstractController
             
             $booking->setAmount($amount);
 
-            $chooseDays = range($booking->getStartDate()->getTimestamp(), $booking->getEndDate()->getTimestamp(), 86400);
+            $chooseDays = range($resa->getStartDate()->getTimestamp(), $resa->getEndDate()->getTimestamp(), 86400);
             
             $available = true;
             foreach ($chooseDays as $day) {
-                if (array_search($day, $notAvailableDays) !== false) {
+                if (array_search($day, $notAvailableDays)) {
                     dump($day);
                     $available = false;
                     break;

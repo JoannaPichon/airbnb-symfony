@@ -38,13 +38,14 @@ class BookingController extends AbstractController
         //      -limit (nobre enregistrements)
         //      -offset (a partir de où)
         //      exemple findBy(['author'=> 44])
-        $repo1 = $repo->findBy(['ad' => $ad->getId()]);
-        foreach ($repo1 as $resa) {
+        $repo = $repo->findBy(['ad' => $ad->getId()]);
+        foreach ($repo as $resa) {
             $allTimeStamp = range($resa->getStartDate()->getTimestamp(), $resa->getEndDate()->getTimestamp(), 86400);
-            $notAvailableDays = array_merge($notAvailableDays, $allTimeStamp);
+            $notAvailableDays = array_merge($notAvailableDays, $allTimeStamp );
         }
 
         // fin liste days not available
+        dump($notAvailableDays);
         
         
 
@@ -66,12 +67,11 @@ class BookingController extends AbstractController
             
             $booking->setAmount($amount);
 
-            $chooseDays = range($booking->getStartDate()->getTimestamp(), $booking->getEndDate()->getTimestamp(), 86400);
+            $chooseDays = range($resa->getStartDate()->getTimestamp(), $resa->getEndDate()->getTimestamp(), 86400);
             
             $available = true;
             foreach ($chooseDays as $day) {
-                if (array_search($day, $notAvailableDays) !== false) {
-                    dump($day);
+                if (array_search($day, $notAvailableDays)) {
                     $available = false;
                     break;
                 }

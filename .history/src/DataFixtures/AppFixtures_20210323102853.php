@@ -108,14 +108,11 @@ class AppFixtures extends Fixture
                 
                 for ($j=0; $j < mt_rand(0,5) ; $j++) { 
                     $booking = new Booking();
-                    $startDate = new \DateTime("+ 5 days");
-                    $startDate->setTime(0,0,0,0);
-                    $endDate = new \DateTime("+ 12 days");
-                    $endDate->setTime(0,0,0,0);
+                    $startDate = new DateTime()
                     $booking->setAd($ad)
                             ->setBooker($user)
-                            ->setStartDate($startDate)
-                            ->setEndDate($endDate)
+                            ->setStartDate(new \DateTime("+ 5 days"))
+                            ->setEndDate(new \DateTime("+ 12 days"))
                             ->setCreatedAt(new \DateTime())
                             ->setAmount($ad->getPrice()*7)
                             ->setComment("N'oubliez pas le lit pour bébé svp");
