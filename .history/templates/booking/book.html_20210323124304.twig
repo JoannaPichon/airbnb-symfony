@@ -14,8 +14,8 @@
 	<h1>Réservation de l'annonce {{ad.title}}</h1>
 		{{ form_start(form) }}
         <div class="row">
-            <div class="col">{{ form_row(form.startDate, {'label':'Date d\'arrivée', 'attr': {'placeholder': 'Titre de l\'annonce'} }) }}</div>
-            <div class="col">{{ form_row(form.endDate, {'label':'Date de départ ', 'attr': {'placeholder': ''} }) }}</div>
+            <div class="col" id="startDate">{{ form_row(form.startDate, {'label':'Date d\'arrivée', 'attr': {'placeholder': 'Titre de l\'annonce'} }) }}</div>
+            <div class="col" id="">{{ form_row(form.endDate, {'label':'Date de départ ', 'attr': {'placeholder': ''} }) }}</div>
         </div>
 		<div class="row">
 		    {{ form_row(form.comment, {'label':'Commentaire', 'attr': {'placeholder': ''} }) }}
@@ -33,7 +33,4 @@
 {% endblock %}
 {% block javascripts %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous"></script>
-<script>
-    $('#booking_startDate').datepicker();
-    $('#booking_endDate').datepicker();</script>
 {% endblock %}
