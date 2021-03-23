@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% form_theme form with ['ad/collection.html.twig'] %}
+
+{% block body %}
+	<div class="container mt-3">
+	
+	<h1>Création d'une annonce</h1>
+		{{ form_start(form) }}
+		{{ form_row(form.title, {'label':'Titre', 'attr': {'placeholder': 'Titre de l\'annonce'} }) }}
+		{{ form_row(form.introduction, {'label':'Introduction', 'attr': {'placeholder': ''} }) }}
+		{{ form_row(form.content, {'label':'Contenu', 'attr': {'placeholder': ''} }) }}
+		
+		{{ form_row(form.rooms, {'label':'Pièces', 'attr': {'min':1} }) }}
+		{{ form_row(form.coverImage, {'label':'Image de couverture', 'attr': {'placeholder': 'Choisissez une image'} }) }}
+		{{ form_row(form.price, {'label':'Prix', 'attr': {'placeholder': 'Prix en euros'} }) }}
+
+		{{form_row(form.images)}}
+
+		<button type="button" class="btn btn-success d-block mx-auto mb-3" id="add_image">Ajouter une image</button>
+		{{form_row(form.file)}}
+		<button type="submit" class="btn btn-success d-block mx-auto mb-5 ">Créer une nouvelle annonce</button>
+		{{ form_end(form) }}
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript" src="/js/image.js"></script>
+{% endblock %}
+

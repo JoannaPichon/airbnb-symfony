@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% form_theme form with ['ad/collection.html.twig'] %}	
+
+{% block body %}
+<div class="container mt-4">
+	
+
+<h1>Inscription</h1>
+
+{{ form_start(form) }}
+
+{{ form_row(form.firstName,{'label':false,'attr':{'placeholder':"Entrez votre nom"}}) }}
+{{ form_row(form.lastName,{'label':false,'attr':{'placeholder':"Entrez votre prénom"}}) }}
+{{ form_row(form.picture,{'label':false,'attr':{'placeholder':"Choisissez une photo de profil"}}) }}
+{{ form_row(form.email,{'label':false,'attr':{'placeholder':"Entrez votre email"}}) }}
+{{ form_row(form.password,{'label':false,'attr':{'placeholder':"Choisissez un mot de passe"}}) }}
+{{ form_row(form.confirm_password,{'label':false,'attr':{'placeholder':"Confirmez le mot de passe"}}) }}
+{{ form_row(form.introduction)}}
+{{ form_row(form.description)}}
+
+
+<button type="submit" class="btn btn-success">S'inscrire</button>
+
+{{ form_end(form) }}
+
+
+
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+{% block javascripts %}
+{% endblock %}
+

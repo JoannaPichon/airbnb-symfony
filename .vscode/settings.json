@@ -1,0 +1,9 @@
+{
+	"emmet.extensionsPath": "",
+	"emmet.includeLanguages": {
+        "twig": "html",
+        "css": "css",
+        "php": "html",
+        "js": "js"
+    },
+}

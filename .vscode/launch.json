@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+    {
+        "type": "firefox",
+        "request": "attach",
+        "name": "firefox",
+        "url": "127.0.0.1:8000"
+    },
+        {
+            "name": "Debug app",
+            "type": "firefox",
+            "request": "attach",
+            "url": "127.0.0.1:8000"
+        }
+    ]
+}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Toutes les réservations{% endblock %}
+
+
+{% block body %}
+	<div class="container mt-3">
+		
+
+		<div class="row">
+            <div class="col text-center">
+				<h2>Toutes mes réservations</h2>
+			</div>
+		</div>
+
+
+		<div class="row justify-content-center align-items-center">
+		
+
+		{% for booking in booker.bookings %}
+		<div class="row">
+			<div class="col">
+				<img src="{{booking.ad.coverImage}}" alt="">
+			</div>
+
+			<div class="col">
+				<strong>Réservation n°{{booking.id}}</strong>
+				<p>Du {{booking.startDate | date ('d/m/y') }} au {{booking.endDate | date ('d/m/y')}}<br/>
+				Montant total: {{booking.amount}}<br/>
+				<a href="{{path ('booking_show', {'id':booking.id})}}" class="btn btn-primary m-1" role="button">Voir l'annonce</a>
+				</p>
+			</div>
+		</div>
+			
+		{% endfor %}
+
+		</div>
+
+
+	</div>
+
+
+{% endblock %}

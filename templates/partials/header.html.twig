@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<a class="navbar-brand" href=""{{ path ('home') }}"">Home</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarColor01">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="{{path ('ads_index')}}">Annonces
+					<span class="sr-only">(current)</span>
+				</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link" href="{{path ('ad_new')}}">Nouvelle annonce
+					<span class="sr-only">(current)</span>
+				</a>
+			</li>
+		</ul>
+
+		<ul class="navbar-nav ml-auto">
+			{% if app.user %}
+				<div class="dropdown">
+					<a class="btn btn-secondary dropdown-toggle" href="{{path('account_index')}}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						{{app.user. firstName}}
+						{{app.user. lastName}}
+
+					</a>
+
+					<div class="dropdown-menu dropdown-dropdown-menu-lg-right" aria-labelledby="dropdownMenuLink">
+						<a class="dropdown-item" href="{{path('account_index')}}">Mon compte</a>
+						<a class="dropdown-item" href="{{path('ad_new')}}">Ajouter une annonce</a>
+						<a class="dropdown-item" href="{{path('account_profile')}}">Modifier profil</a>
+						<a class="dropdown-item" href="{{path('booking_index', {'id':app.user.id})}}">Mes réservations</a>
+						<a class="dropdown-item" href="{{path('account_password')}}">Modifier mon mdp</a>
+						<a class="dropdown-item" href="{{path('account_logout')}}">Déconnexion</a>
+					</div>
+				</div>
+
+			{% else %}
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('account_register')}}">Inscription
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('account_login')}}">Connexion
+					</a>
+				</li>
+			{% endif %}
+		</ul>
+	</div>
+</nav>
+
+
+{% for label, messages in app.flashes %}
+	<div class="alert alert-{{label}} alert-dismissible fade show" role="alert">
+		{% for message in messages %}
+			{{message | raw}}<br/>
+		{% endfor %}
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+{% endfor %}
