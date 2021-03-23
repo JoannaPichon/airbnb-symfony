@@ -106,7 +106,7 @@ class AppFixtures extends Fixture
         
                 $manager -> persist($ad);
                 
-                //mettre toutes les dates à minuit 00:00:00 !!
+                //mettre toutes les dates à minuit 00:00:00
                 for ($j=0; $j < mt_rand(0,5) ; $j++) { 
                     $booking = new Booking();
                     $startDate = new \DateTime("+ 5 days");

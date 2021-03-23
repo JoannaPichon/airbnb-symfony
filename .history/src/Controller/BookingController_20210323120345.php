@@ -68,8 +68,7 @@ class BookingController extends AbstractController
             $booking->setAmount($amount);
 
             $chooseDays = range($booking->getStartDate()->getTimestamp(), $booking->getEndDate()->getTimestamp(), 86400);
-            // enlever ici aussi le dernier car on ne dort pas le dernier jour
-            array_pop($chooseDays);
+            
             $available = true;
             foreach ($chooseDays as $day) {
                 //array_search peut renvoyer 0 donc false
@@ -80,23 +79,23 @@ class BookingController extends AbstractController
                     break;
                 }
             }
-            if (!$available) {
-                $this->addFlash(
-                    'warning',
-                    'Les dates choisies ne sont pas disponibles'
-                );
-            } else {
-                $manager->persist($booking);
-                $manager->flush();
-    
-                $this->addFlash(
-                    'success',
-                    'La réservation a bien été effectuée'
-                );
-    
-                return $this->redirectToRoute('booking_show', ['id' => $booking->getId()]);
-            }
-        }  
+            dump($notAvailableDays);
+            dump($chooseDays);
+            dump($available);
+            exit;
+
+            $manager->persist($booking);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'La réservation a bien été effectuée'
+            );
+
+            return $this->redirectToRoute('booking_show', ['id' => $booking->getId()]);
+        }
+
+            
 
         return $this->render('booking/book.html.twig', [
             'form'  => $form->createView(),

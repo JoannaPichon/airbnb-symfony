@@ -80,23 +80,27 @@ class BookingController extends AbstractController
                     break;
                 }
             }
-            if (!$available) {
-                $this->addFlash(
-                    'warning',
-                    'Les dates choisies ne sont pas disponibles'
-                );
-            } else {
-                $manager->persist($booking);
-                $manager->flush();
-    
-                $this->addFlash(
-                    'success',
-                    'La réservation a bien été effectuée'
-                );
-    
-                return $this->redirectToRoute('booking_show', ['id' => $booking->getId()]);
+            if ($available ) {
+                # code...
             }
-        }  
+
+            dump($notAvailableDays);
+            dump($chooseDays);
+            dump($available);
+            exit;
+
+            $manager->persist($booking);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'La réservation a bien été effectuée'
+            );
+
+            return $this->redirectToRoute('booking_show', ['id' => $booking->getId()]);
+        }
+
+            
 
         return $this->render('booking/book.html.twig', [
             'form'  => $form->createView(),
