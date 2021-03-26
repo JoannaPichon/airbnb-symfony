@@ -101,7 +101,7 @@ class BookingController extends AbstractController
         return $this->render('booking/book.html.twig', [
             'form'  => $form->createView(),
             'ad'    => $ad,
-            'notAvailableDays' => $notAvailableDays
+            'notAvailableDays'
         ]);
     }
 
