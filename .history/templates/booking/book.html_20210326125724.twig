@@ -55,11 +55,12 @@
         timeStartDate.setYear(startDate[2]);
         var timeStart = timeStartDate.getTime();
 
-        var endDate = $('#booking_endDate').val().split('/');
+        var endDate = $('#booking_endDate').val();
+        var endDateArray = endDate.split('/');
         var timeEndDate = new Date();
-        timeEndDate.setDate(endDate[0]);
-        timeEndDate.setMonth(endDate[1]-1);
-        timeEndDate.setYear(endDate[2]);
+        timeEndDate.setDate(endDateArray[0]);
+        timeEndDate.setMonth(endDateArray[1]-1);
+        timeEndDate.setYear(endDateArray[2]);
         var timeEnd = timeEndDate.getTime();
 
         var diff = (timeEndDate.getTime()- timeStartDate.getTime())/1000/86400;

@@ -22,7 +22,7 @@
         </div>
         <div class="row">
             <p><span id="days"></span> nuits à {{ad.price}} par nuit<br/>
-                Montant du séjour: <span id="amount"></span>€</p>
+                Montant du séjour:<span id="amount"></span></p>
         </div>
 	
 	
@@ -46,28 +46,16 @@
     $('#booking_endDate').datepicker({
         format: 'dd/mm/yyyy'
     });
-    $('#booking_startDate, #booking_endDate').on('change', calcul);
+    $('#booking_startDate', '#booking_endDate').change(calcul);
     function calcul() {
-        var startDate = $('#booking_startDate').val().split('/');
-        var timeStartDate = new Date();
-        timeStartDate.setDate(startDate[0]);
-        timeStartDate.setMonth(startDate[1]-1);
-        timeStartDate.setYear(startDate[2]);
-        var timeStart = timeStartDate.getTime();
-
-        var endDate = $('#booking_endDate').val().split('/');
-        var timeEndDate = new Date();
-        timeEndDate.setDate(endDate[0]);
-        timeEndDate.setMonth(endDate[1]-1);
-        timeEndDate.setYear(endDate[2]);
-        var timeEnd = timeEndDate.getTime();
-
-        var diff = (timeEndDate.getTime()- timeStartDate.getTime())/1000/86400;
-        console.log(diff)
-
-        $('#days').html(diff);
-        $('#amount').html(diff*"{{ad.price}}")
-
+        var startDate = $('#booking_startDate').val();
+        var endDate = $('#booking_endDate').val();
     }
-</script>
+
+    
+    var time = endDate.getTime();
+    console.log(time);
+    $('#amount');
+    $('#days');
+    </script>
 {% endblock %}

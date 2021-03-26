@@ -22,7 +22,7 @@
         </div>
         <div class="row">
             <p><span id="days"></span> nuits à {{ad.price}} par nuit<br/>
-                Montant du séjour: <span id="amount"></span>€</p>
+                Montant du séjour:<span id="amount"></span></p>
         </div>
 	
 	
@@ -48,25 +48,27 @@
     });
     $('#booking_startDate, #booking_endDate').on('change', calcul);
     function calcul() {
-        var startDate = $('#booking_startDate').val().split('/');
+        var startDate = $('#booking_startDate').val();
+        var startDateArray = startDate.split('/');
         var timeStartDate = new Date();
-        timeStartDate.setDate(startDate[0]);
-        timeStartDate.setMonth(startDate[1]-1);
-        timeStartDate.setYear(startDate[2]);
+        timeStartDate.setDate(startDateArray[0]);
+        timeStartDate.setMonth(startDateArray[1]-1);
+        timeStartDate.setYear(startDateArray[2]);
         var timeStart = timeStartDate.getTime();
 
-        var endDate = $('#booking_endDate').val().split('/');
+        var endDate = $('#booking_endDate').val();
+        var endDateArray = endDate.split('/');
         var timeEndDate = new Date();
-        timeEndDate.setDate(endDate[0]);
-        timeEndDate.setMonth(endDate[1]-1);
-        timeEndDate.setYear(endDate[2]);
+        timeEndDate.setDate(endDateArray[0]);
+        timeEndDate.setMonth(endDateArray[1]-1);
+        timeEndDate.setYear(endDateArray[2]);
         var timeEnd = timeEndDate.getTime();
 
-        var diff = (timeEndDate.getTime()- timeStartDate.getTime())/1000/86400;
+        var diff = ()timeEndDate.getTime()- timeStartDate.getTime()/1000/86400;
         console.log(diff)
 
         $('#days').html(diff);
-        $('#amount').html(diff*"{{ad.price}}")
+        $('#amount')
 
     }
 </script>
