@@ -1,0 +1,19 @@
+<div class="col-4 mb-4">
+
+
+	<div class="card">
+		<div class="card-header">
+			{{ad.rooms}}
+			chambres
+			{{ad.price}}€/nuits<br>
+			{% include "partials/ratingStar.html.twig" with {'ratings': ad.avgRa } %}
+		</div>
+		<div class="card-body text-center">
+			<img src="{{ad.coverImage}}">
+			<h5 class="card-title">{{ad.title}}</h5>
+			<p class="card-text">{{ad.introduction | striptags('<p><br><b><img>') | raw }}</p>
+			<a href="{{path('ad_show',{'slug':ad.slug})}}" class="btn btn-primary">Voir l'annonce</a>
+			<a href="{{path("ad_edit",{'slug':ad.slug})}}" class="btn btn-primary">Modifier l'annonce</a>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir la réservation{% endblock %}
+
+
+{% block body %}
+	<div class="container mt-3">
+		<div class="row">
+			<div class="col">
+				<h2>Votre réservation</h2>
+				<ul class="list-group">
+					<li class="list-group-item">Réservation n° {{booking.id}}</li>
+					<li class="list-group-item">Date d'arrivée: {{booking.startDate | date("d/m/y")}}</li>
+					<li class="list-group-item">Date de départ: {{booking.endDate | date("d/m/y")}}</li>
+					<li class="list-group-item">Durée: {{date(booking.startDate).diff(booking.endDate).days+1}} jours, {{date(booking.startDate).diff(booking.endDate).days }} nuits</li>
+					<li class="list-group-item">Montant: {{booking.amount}}€<br/>(prix par nuit: {{booking.ad.price}}€)</li>
+					<li class="list-group-item">Commentaire: {{booking.comment | default('Aucun commentaire')}}</li>
+				</ul>
+				<div class="row">
+					<div class="col-3">
+						<img style="width:64px; height:64px;" src="{{booking.ad.author.picture}}" alt="">
+					</div>
+					<div class="col-9">
+						<strong>{{booking.ad.author.firstName}} {{booking.ad.author.lastName}}</strong>
+						<span class="badge badge-info d-block">{{booking.ad.author.ads | length}} annonces</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						{{form_start(form)}}
+
+						{{form_row(form.rating, {'label': 'Note sur 5'})}}
+						{{form_row(form.content, {'label': 'Votre commentaire'})}}
+
+						{{form_end(form)}}
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<h2>Votre hébergement</h2>
+				<a href="{{ path('ad_show', {'slug': booking.ad.slug}) }}">{{booking.ad.title}}</a>
+				<img src="{{ booking.ad.coverImage }}" alt="">
+			</div>
+		</div>
+	</div>
+{% endblock %}

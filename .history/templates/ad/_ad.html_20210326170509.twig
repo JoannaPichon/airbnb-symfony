@@ -1,0 +1,17 @@
+<div class="col d-flex justify-content-center align-items-center">
+				<div class="card m-3" style="width: 18rem;">
+					<div class="card-header">
+						{{ ad.rooms }} chambres {{ad.price}}€ par nuit<br/>
+						<p>Pas encore noté</p>
+					</div>
+					<img src="{{ad.coverImage}}" class="card-img-top" alt="...">
+					<div class="card-body text-center">
+						<h5 class="card-title">{{ad.title}}</h5>
+						<p class="card-text">{{ad.introduction | raw}}</p>
+						<a href="{{ path('ad_show', {'slug': ad.slug}) }}" class="btn btn-primary m-1">Voir l'annonce</a>
+						{% if app.user and app.user == ad.author %}
+							<a href="{{ path('ad_edit', {'slug': ad.slug}) }}" class="btn btn-primary m-1">Modifier l'annonce</a>
+						{% endif %}
+					</div>
+				</div>
+			</div>
