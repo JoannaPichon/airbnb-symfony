@@ -14,16 +14,14 @@ class StringToDateTimeTransformer implements DataTransformerInterface
 	public function transform($date)
 	{
 		if ($date != null) {
-			return $date->format('d/m/Y');
+			return $date->format('dd/dd/YYYY');
 		}
 		
 	}
 
 	public function reverseTransform($strDate)
 	{
-		dump($strDate);
-		$date = \DateTime::createFromFormat('d/m/Y',$strDate);
-		// le format depend du format utilisé dans date picker
+		$date = new \DateTime($strDate);
 		$date->setTime(0,0,0);
 		return $date;
 	}

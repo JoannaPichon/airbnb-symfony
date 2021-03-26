@@ -23,7 +23,6 @@ class StringToDateTimeTransformer implements DataTransformerInterface
 	{
 		dump($strDate);
 		$date = \DateTime::createFromFormat('d/m/Y',$strDate);
-		// le format depend du format utilisé dans date picker
 		$date->setTime(0,0,0);
 		return $date;
 	}
