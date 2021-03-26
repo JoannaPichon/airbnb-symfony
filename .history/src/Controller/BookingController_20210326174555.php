@@ -147,7 +147,7 @@ class BookingController extends AbstractController
             
             // afficher uniquement apres le sejour effectué
 
-            //(ad)   annonces pages  (ad)
+            //annonces pages 
             $manager->persist($comment);
             $manager->flush();
         }
