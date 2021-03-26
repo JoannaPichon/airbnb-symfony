@@ -30,7 +30,7 @@ class BookingType extends AbstractType
             //     'widget' => 'single_text',
             //     'html5' => false
             // ])
-            ->add('endDate',  TextType::class)
+            ->add('endDate', 
             
             // DateType::class, [
             //     'widget' => 'single_text',

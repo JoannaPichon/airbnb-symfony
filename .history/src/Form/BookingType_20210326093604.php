@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Booking;
-use App\Form\DataTransformer\StringToDateTimeTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -15,7 +14,7 @@ class BookingType extends AbstractType
 {
     private $transformer;
 
-    public function __construct(StringToDateTimeTransformer $transformer)
+    public function __construct(StringT $transformer)
     {
         $this->transformer = $transformer;
     }
@@ -24,28 +23,20 @@ class BookingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('startDate', TextType::class)
-            
-            // DateType::class, [
-            //     'widget' => 'single_text',
-            //     'html5' => false
-            // ])
-            ->add('endDate',  TextType::class)
-            
-            // DateType::class, [
-            //     'widget' => 'single_text',
-            //     'html5' => false
-            // ])
+            ->add('startDate', DateType::class, [
+                'widget' => 'single_text',
+                'html5' => false
+            ])
+            ->add('endDate', DateType::class, [
+                'widget' => 'single_text',
+                'html5' => false
+            ])
             ->add('comment')
             // ->add('createdAt', HiddenType::class, ['value'])
             // ->add('amount')
             // ->add('booker')
             // ->add('ad')
         ;
-        $builder->get('startDate')
-            ->addModelTransformer($this->transformer);
-        $builder->get('endDate')
-            ->addModelTransformer($this->transformer);
     }
 
     public function configureOptions(OptionsResolver $resolver)

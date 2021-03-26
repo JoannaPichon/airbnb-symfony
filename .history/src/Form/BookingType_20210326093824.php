@@ -24,27 +24,23 @@ class BookingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('startDate', TextType::class)
-            
-            // DateType::class, [
-            //     'widget' => 'single_text',
-            //     'html5' => false
-            // ])
-            ->add('endDate',  TextType::class)
-            
-            // DateType::class, [
-            //     'widget' => 'single_text',
-            //     'html5' => false
-            // ])
+            ->add('startDate', DateType::class, [
+                'widget' => 'single_text',
+                'html5' => false
+            ])
+            ->add('endDate', DateType::class, [
+                'widget' => 'single_text',
+                'html5' => false
+            ])
             ->add('comment')
             // ->add('createdAt', HiddenType::class, ['value'])
             // ->add('amount')
             // ->add('booker')
             // ->add('ad')
         ;
-        $builder->get('startDate')
+        $builder->get('issue')
             ->addModelTransformer($this->transformer);
-        $builder->get('endDate')
+        $builder->get('issue')
             ->addModelTransformer($this->transformer);
     }
 
