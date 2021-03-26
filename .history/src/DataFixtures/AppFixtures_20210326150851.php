@@ -130,11 +130,13 @@ class AppFixtures extends Fixture
                                 ->setContent("Super séjour $j")
                                 ->setAuthor($user)
                                 ->setAd($ad);
-                        $manager->persist($comment);
+                        $manager->persist($comment)
+
                     }
                 }
                 $manager->flush(); 
             }        
         }
+        
     }
 }

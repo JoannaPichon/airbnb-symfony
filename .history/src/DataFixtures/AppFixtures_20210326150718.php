@@ -126,15 +126,13 @@ class AppFixtures extends Fixture
                     if (mt_rand(0,1)) {
                         $comment = new Comment();
                         $comment->setCreatedAt(new \DateTime())
-                                ->setRating(mt_rand(0,5))
-                                ->setContent("Super séjour $j")
-                                ->setAuthor($user)
-                                ->setAd($ad);
-                        $manager->persist($comment);
+                                ->setRating(mt_rand(2,5))
+                                ->setContent()
                     }
                 }
                 $manager->flush(); 
             }        
         }
+        
     }
 }

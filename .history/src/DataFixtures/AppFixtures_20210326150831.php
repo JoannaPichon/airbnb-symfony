@@ -129,12 +129,14 @@ class AppFixtures extends Fixture
                                 ->setRating(mt_rand(0,5))
                                 ->setContent("Super séjour $j")
                                 ->setAuthor($user)
-                                ->setAd($ad);
-                        $manager->persist($comment);
+                                ->setAd($ad)
+                                ->set
+
                     }
                 }
                 $manager->flush(); 
             }        
         }
+        
     }
 }

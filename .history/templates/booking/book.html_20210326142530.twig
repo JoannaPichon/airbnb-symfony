@@ -22,8 +22,8 @@
 		    {{ form_row(form.comment, {'label':'Commentaire', 'attr': {'placeholder': ''} }) }}
         </div>
         <div class="row">
-            <p><span id="nights">--</span> nuits à {{ad.price}} par nuit<br/>
-                Montant du séjour: <span id="amount">--</span>€</p>
+            <p><span id="nights"></span> nuits à {{ad.price}} par nuit<br/>
+                Montant du séjour: <span id="amount"></span>€</p>
         </div>
 	
 	
@@ -52,29 +52,19 @@
         
         var startDate = $('#booking_startDate').val().split('/');
         var timeStartDate = new Date();
-        timeStartDate.setDate(startDate[0])
-        timeStartDate.setMonth(startDate[1]-1)
-        timeStartDate.setYear(startDate[2]);
+        timeStartDate.setDate(startDate[0]).setMonth(startDate[1]-1).setYear(startDate[2]);
         var timeStart = timeStartDate.getTime();
 
         var endDate = $('#booking_endDate').val().split('/');
         var timeEndDate = new Date();
-        timeEndDate.setDate(endDate[0])
-        timeEndDate.setMonth(endDate[1]-1)
-        timeEndDate.setYear(endDate[2]);
+        timeEndDate.setDate(endDate[0]).setMonth(endDate[1]-1).setYear(endDate[2]);
         var timeEnd = timeEndDate.getTime();
 
         var diff = (timeEndDate.getTime()- timeStartDate.getTime())/1000/86400;
-        console.log(diff);
+        console.log(diff)
 
-        if ((Number.isNaN(diff) || diff <= 0)) {
-            $('#nights').html("--");
-            $('#amount').html("--");
-        } else {
-            $('#nights').html(diff);
-            $('#amount').html(diff*{{ad.price}});
-        }
-        
+        $('#days').html(diff);
+        $('#amount').html(diff*{{ad.price}})
 
     }
 </script>

@@ -131,10 +131,12 @@ class AppFixtures extends Fixture
                                 ->setAuthor($user)
                                 ->setAd($ad);
                         $manager->persist($comment);
+
                     }
                 }
                 $manager->flush(); 
             }        
         }
+        
     }
 }

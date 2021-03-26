@@ -127,14 +127,14 @@ class AppFixtures extends Fixture
                         $comment = new Comment();
                         $comment->setCreatedAt(new \DateTime())
                                 ->setRating(mt_rand(0,5))
-                                ->setContent("Super séjour $j")
+                                ->setContent("Super séjour")
                                 ->setAuthor($user)
-                                ->setAd($ad);
-                        $manager->persist($comment);
+                                
                     }
                 }
                 $manager->flush(); 
             }        
         }
+        
     }
 }
