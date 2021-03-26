@@ -20,6 +20,9 @@
 				
 				
 				{% set arrayImages = ad.images|merge(ad.imageUploads) %}
+				<pre>
+					{{ dump(arrayImages) }}
+				</pre>
 				<p>{{ ad.content | striptags('<p><br><b>') | raw}}</p>
 				<div id="carouselExampleCaptions" style="max-width: 200px;" class="carousel slide" data-ride="carousel">
 					<ol class="carousel-indicators">
