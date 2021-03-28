@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CommentRepository;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
+ * @UniqueEntity(fields={"booking"},
+ * message="Un avis a déjà été posté pour cette réservation")
  */
 class Comment
 {
@@ -19,6 +23,8 @@ class Comment
 
     /**
      * @ORM\Column(type="datetime")
+     * 
+     * 
      */
     private $createdAt;
 
@@ -43,6 +49,11 @@ class Comment
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Booking::class, mappedBy="rating", cascade={"persist", "remove"})
+     */
+    private $booking;
 
     public function getId(): ?int
     {
@@ -105,6 +116,28 @@ class Comment
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getBooking(): ?Booking
+    {
+        return $this->booking;
+    }
+
+    public function setBooking(?Booking $booking): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($booking === null && $this->booking !== null) {
+            $this->booking->setRating(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($booking !== null && $booking->getRating() !== $this) {
+            $booking->setRating($this);
+        }
+
+        $this->booking = $booking;
 
         return $this;
     }

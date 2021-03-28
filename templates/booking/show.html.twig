@@ -16,6 +16,8 @@
 					<li class="list-group-item">Montant: {{booking.amount}}€<br/>(prix par nuit: {{booking.ad.price}}€)</li>
 					<li class="list-group-item">Commentaire: {{booking.comment | default('Aucun commentaire')}}</li>
 				</ul>
+				
+				<h4>Propriétaire</h4>
 				<div class="row">
 					<div class="col-3">
 						<img style="width:64px; height:64px;" src="{{booking.ad.author.picture}}" alt="">
@@ -25,17 +27,20 @@
 						<span class="badge badge-info d-block">{{booking.ad.author.ads | length}} annonces</span>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col">
-						{{form_start(form)}}
+				{% if date(booking.endDate) <= date() %}
+					<div class="row m-4">
+						<div class="col">
+							{{form_start(form)}}
 
-						{{form_row(form.rating, {'label': 'Note sur 5'})}}
-						{{form_row(form.content, {'label': 'Votre commentaire sur le séjour'})}}
-						<button type="submit">Poster</button>
+							{{form_row(form.rating, {'label': 'Note sur 5'})}}
+							{{form_row(form.content, {'label': 'Votre commentaire sur le séjour'})}}
+							<button type="submit" class="btn btn-primary">Poster</button>
 
-						{{form_end(form)}}
+							{{form_end(form)}}
+						</div>
 					</div>
-				</div>
+				{% endif %}
+				
 			</div>
 			<div class="col">
 				<h2>Votre hébergement</h2>

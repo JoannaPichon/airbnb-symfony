@@ -21,15 +21,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdController extends AbstractController
 {
     /**
-     * @Route("/ads", name="ads_index")
+     * @Route("/ads/{page}", name="ads_index", requirements={"page":"[0-9]{1,}"})
      */
-    public function index(AdRepository $repo): Response
-    {
+    public function index(AdRepository $repo, $page=1): Response
+    {   
+        $limit = 10;
+        $offset = $page * $limit - $limit ;
+        $pages = ceil(count($repo->findAll())/$limit);
 
         //$repo = $this   -> getDoctrine()-> getRepository(Ad::class);
-        $ads = $repo -> findAll();
+        $ads = $repo -> findBy(array(), ['id' => 'ASC'], $limit, $offset);
 
         return $this->render('ad/index.html.twig', [
+            'page' => $page,
+            'pages' => $pages,
             'ads' => $ads
         ]);
     }
@@ -70,7 +75,7 @@ class AdController extends AbstractController
             $upload -> upload($ad, $manager);
 
             
-
+            $ad->setAuthor($this->getUser());
             $manager -> persist($ad);
             $manager -> flush();
 

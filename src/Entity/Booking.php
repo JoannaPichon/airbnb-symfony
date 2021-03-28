@@ -6,10 +6,15 @@ use App\Entity\Ad;
 use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\BookingRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass=BookingRepository::class)
+ * 
  */
 class Booking
 {
@@ -60,6 +65,18 @@ class Booking
      * @ORM\Column(type="text", nullable=true)
      */
     private $comment;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Comment::class, inversedBy="booking", cascade={"persist", "remove"})
+     */
+    private $rating;
+
+    
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -149,4 +166,17 @@ class Booking
 
         return $this;
     }
+
+    public function getRating(): ?Comment
+    {
+        return $this->rating;
+    }
+
+    public function setRating(?Comment $rating): self
+    {
+        $this->rating = $rating;
+
+        return $this;
+    }
+
 }

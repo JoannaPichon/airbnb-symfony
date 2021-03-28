@@ -46,24 +46,29 @@ class BookingController extends AbstractController
             array_pop($allTimeStamp);
             $notAvailableDays = array_merge($notAvailableDays, $allTimeStamp);
         }
-        
+        dump('1');
         // fin liste days not available
         
         
 
 
         $booking = new Booking();
+        dump('2');
 
         $form = $this -> createForm(BookingType::class, $booking);
+        dump('3');
+        dump($request);
         $form -> handleRequest($request);
 
         if ($form -> isSubmitted() && $form -> isValid()) {
+        dump('4');
             
             $booker = $this->getUser();
             $booking->setBooker($booker)
                     ->setAd($ad)
                     ->setCreatedAt(new \DateTime());
             $interval = date_diff($booking->getStartDate(), $booking->getEndDate());
+        dump('5');
             
             $amount = $interval->days * $ad->getPrice();
             
@@ -111,8 +116,9 @@ class BookingController extends AbstractController
      * @IsGranted("ROLE_USER")
      * @Route("/bookings/{id}", name="booking_index")
      */
-    public function bookings(User $user): Response
+    public function bookings(User $user ): Response
     {
+        
         dump($user);
 
         return $this->render('booking/index.html.twig', [
@@ -129,27 +135,40 @@ class BookingController extends AbstractController
      */
     public function showBook(Booking $booking, EntityManagerInterface $manager, Request $request): Response
     {
+        dump("booking_show");
+        $user = $this->getUser();
+        if ($booking->getBooker()!= $user) {
+            return $this->redirectToRoute('booking_index', ['id' => $user->getId()]);
+        }
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            dump($booking->getRating());
+            
+            if ( $booking->getRating()) {
+                $this->addFlash('warning', 'Vous avez déjà posté un commentaire');
+                return $this->redirectToRoute('booking_show', ['id' => $booking->getId()]);
+            }
+            
             $comment->setCreatedAt(new \DateTime());
             $ad = $booking->getAd();
             $comment->setAd($ad);
             $author = $booking->getBooker();
             $comment->setAuthor($author);
+            $booking->setRating($comment);
+            
+        
 
-            // 1 comm par personne
-
-            // comm uniquement si resa
             
             // afficher uniquement apres le sejour effectué
 
             //(ad)   annonces pagination (ad)
             $manager->persist($comment);
             $manager->flush();
+            $this->addFlash('success', 'Votre avis a bien été posté');
+            return $this->redirectToRoute('ad_show', ['slug' => $ad->getSlug()]);
         }
 
         return $this->render('booking/show.html.twig', [
