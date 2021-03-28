@@ -27,19 +27,37 @@
 						<span class="badge badge-info d-block">{{booking.ad.author.ads | length}} annonces</span>
 					</div>
 				</div>
-				{% if date(booking.endDate) <= date() %}
-					<div class="row m-4">
-						<div class="col">
-							{{form_start(form)}}
+				<div class="row">
+					<h3>Votre avis sur le séjour</h3>
+					
+						<div class="alert alert-dark m-2" id="commentShow" role="alert">
+							<strong>{{booking.rating.author.firstName}} {{booking.rating.author.lastName}}</strong>
+								Note: {% include "partials/ratingStar.html.twig" with {'avgRatings': booking.rating.rating} %}
+							<blockquote>{{booking.rating.content}}</blockquote>
 
-							{{form_row(form.rating, {'label': 'Note sur 5'})}}
-							{{form_row(form.content, {'label': 'Votre commentaire sur le séjour'})}}
-							<button type="submit" class="btn btn-primary">Poster</button>
+							<p>{{booking.rating.createdAt | date}}</p>
+							<a id="editComment"  href="{{ path('comment_edit', {'id': booking.rating.id}) }}" class="btn btn-primary">Modifier</a>
+							
 
-							{{form_end(form)}}
 						</div>
-					</div>
-				{% endif %}
+						{% if date(booking.endDate) <= date() %}
+						<div class="row m-4" id="commentEdit" >
+							<div class="col">
+								{{form_start(form)}}
+
+								{{form_row(form.rating, {'label': 'Note sur 5'})}}
+								{{form_row(form.content, {'label': 'Votre commentaire sur le séjour'})}}
+								<button type="submit" class="btn btn-primary">Poster</button>
+
+								{{form_end(form)}}
+							</div>
+						</div>
+						{% else %}
+						<h5>Votre séjour n'est pas terminé, vous pourrez poster un avis à votre retour.</h5>
+						{% endif %}		
+
+				</div>
+				
 				
 			</div>
 			<div class="col">

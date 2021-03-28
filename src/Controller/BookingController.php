@@ -140,32 +140,30 @@ class BookingController extends AbstractController
         if ($booking->getBooker()!= $user) {
             return $this->redirectToRoute('booking_index', ['id' => $user->getId()]);
         }
+        
+
         $comment = new Comment();
+        
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($booking->getRating());
             
             if ( $booking->getRating()) {
                 $this->addFlash('warning', 'Vous avez déjà posté un commentaire');
                 return $this->redirectToRoute('booking_show', ['id' => $booking->getId()]);
             }
             
-            $comment->setCreatedAt(new \DateTime());
             $ad = $booking->getAd();
-            $comment->setAd($ad);
             $author = $booking->getBooker();
-            $comment->setAuthor($author);
-            $booking->setRating($comment);
-            
-        
-
-            
-            // afficher uniquement apres le sejour effectué
-
-            //(ad)   annonces pagination (ad)
+            $comment->setCreatedAt(new \DateTime())
+                    ->setAd($ad)
+                    ->setAuthor($author);
             $manager->persist($comment);
+
+            $booking->setRating($comment);
+            $manager->persist($booking);
+            
             $manager->flush();
             $this->addFlash('success', 'Votre avis a bien été posté');
             return $this->redirectToRoute('ad_show', ['slug' => $ad->getSlug()]);
@@ -173,6 +171,37 @@ class BookingController extends AbstractController
 
         return $this->render('booking/show.html.twig', [
             'booking'   => $booking,
+            'form'  => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/booking/comment/{id}", name="comment_edit")
+     */
+    public function editComment(Comment $comment, EntityManagerInterface $manager, Request $request): Response
+    {
+        dump("comment_edit");
+        
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+            //editiing doesnt work for now
+            
+            
+            // $comment->setCreatedAt(new \DateTime());
+
+            // $manager->persist($comment);            
+            // $manager->flush();
+            // $this->addFlash('success', 'Votre commentaire a bien été modifié');
+            // return $this->redirectToRoute('booking_show', ['id' => $comment->getBooking()]);
+        }
+
+        return $this->render('booking/editComment.html.twig', [
+            'booking'   => $comment->getBooking(),
             'form'  => $form->createView(),
         ]);
     }
