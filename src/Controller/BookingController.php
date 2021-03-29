@@ -161,6 +161,8 @@ class BookingController extends AbstractController
                     ->setAuthor($author);
             $manager->persist($comment);
 
+            // add checkbox for choosing rating (stars)
+
             $booking->setRating($comment);
             $manager->persist($booking);
             
