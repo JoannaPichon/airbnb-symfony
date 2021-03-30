@@ -99,9 +99,9 @@ class AccountController extends AbstractController
             'form' => $form->createView(),
             'user' => $this -> getUser()
         ]);    
-    	
-
     }
+
+    
     /**
      * @Route("/account/", name="account_index")
      */

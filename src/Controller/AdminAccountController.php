@@ -2,19 +2,43 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AdminAccountController extends AbstractController
 {
+
     /**
-     * @Route("/admin/account", name="admin_account")
+     * @Route("/admin/login", name="admin_account_login")
      */
-    public function index(): Response
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        return $this->render('admin_account/index.html.twig', [
-            'controller_name' => 'AdminAccountController',
+    	$error = $authenticationUtils->getLastAuthenticationError();
+
+        return $this->render('admin/account/login.html.twig', [
+        	'hasError'=>$error
         ]);
+    }
+
+    /**
+     * @Route("/admin/account/profile", name="admin_account_profile")
+     */
+    public function profile(): Response
+    {
+        
+        return $this->render('admin/account/profile.html.twig', [
+            
+            'user' => $this -> getUser()
+        ]);    
+    }
+
+    /**
+     * @Route("/admin/logout", name="admin_account_logout")
+     */
+    public function logout()
+    {
+           
     }
 }
