@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title %}Admin des annonces{% endblock %}
 
@@ -20,7 +20,6 @@
             <th scope="col">Réservations</th>
             <th scope="col">Note</th>
             <th scope="col">Action</th>
-            <th th>
           </tr>
         </thead>
         <tbody>
@@ -31,10 +30,12 @@
                     <td>{{ad.title}}</td>
                     <td>{{ad.author.firstName}} {{ad.author.lastName}}</td>
                     <td>{{ad.price}}€ par nuit</td>
-                    <td>{{ad.bookings | length}} réservation(s)</td>
-                    <td>{{ad.getAvgRatings | round(1) }}/5</td>
-                    
-                    {# <td>{{ad.imageUploads}}</td> #}
+                    <td>{{ad.bookings | length}} réservation(s) <a href="">Voir</a></td>
+                    <td>{{(ad.getAvgRatings | number_format(1, ',', '.')) | default(0) }}/5</td>
+                    <td>
+                        <a href="" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                        <a href="" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                    </td>
                 </tr>
             {% endfor %}  
         </tbody>
