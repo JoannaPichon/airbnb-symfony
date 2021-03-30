@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin des annonces{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+
+    <h1 class="text-center">Gestion des annonces</h1>
+
+                    
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">ID</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Auteur</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Réservations</th>
+            <th scope="col">Note</th>
+            <th scope="col">Action</th>
+            <th th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for ad in ads %}
+                <tr>
+                    <th scope="row">{{loop.index}}</th>
+                    <th>{{ad.id}}</th>
+                    <td>{{ad.title}}</td>
+                    <td>{{ad.author.firstName}} {{ad.author.lastName}}</td>
+                    <td>{{ad.price}}€ par nuit</td>
+                    <td>{{ad.bookings | length}} réservation(s)</td>
+                    <td>{{ad.getAvgRatings | round(1) }}/5</td>
+                    
+                    {# <td>{{ad.imageUploads}}</td> #}
+                </tr>
+            {% endfor %}  
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+
