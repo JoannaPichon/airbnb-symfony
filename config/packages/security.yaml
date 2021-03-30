@@ -17,7 +17,8 @@ security:
             security: false
 
         admin:
-            anonymous: lazy
+            pattern: ^/admin
+            anonymous: true
             provider: in_database
 
             form_login:
