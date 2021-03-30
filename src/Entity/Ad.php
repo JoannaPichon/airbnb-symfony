@@ -82,7 +82,8 @@ class Ad
     private $imageUploads;
     
     //champs pour suppr images qui contiendra les id des imges a suppr
-
+     
+    ////////!\\\\\\\\\\
     public $idArray;
     
 
@@ -98,6 +99,7 @@ class Ad
      * })
      * 
      */
+    //concerne images telechargees afin de pouvoir mettre des contraintes de validation
     
     public $file;
 
@@ -115,7 +117,7 @@ class Ad
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="ad", orphanRemoval=true)
      */
-    private $comments; //concerne images telechargees afin de pouvoir mettre des contraintes de validation
+    private $comments; 
 
     public function __construct()
     {

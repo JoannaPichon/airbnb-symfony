@@ -50,6 +50,7 @@ class Comment
      */
     private $author;
 
+    ////////!\\\\\\\\\\
     /**
      * @ORM\OneToOne(targetEntity=Booking::class, mappedBy="rating", cascade={"persist", "remove"})
      */
