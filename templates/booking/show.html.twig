@@ -29,17 +29,17 @@
 				</div>
 				<div class="row">
 					<h3>Votre avis sur le séjour</h3>
-					
+					{% if booking.rating %}
 						<div class="alert alert-dark m-2" id="commentShow" role="alert">
-							<strong>{{booking.rating.author.firstName}} {{booking.rating.author.lastName}}</strong>
-								Note: {% include "partials/ratingStar.html.twig" with {'avgRatings': booking.rating.rating} %}
-							<blockquote>{{booking.rating.content}}</blockquote>
+								<strong>{{booking.rating.author.firstName}} {{booking.rating.author.lastName}}</strong>
+									Note: {% include "partials/ratingStar.html.twig" with {'avgRatings': booking.rating.rating} %}
+								<blockquote>{{booking.rating.content}}</blockquote>
 
-							<p>{{booking.rating.createdAt | date}}</p>
-							<a id="editComment"  href="{{ path('comment_edit', {'id': booking.rating.id}) }}" class="btn btn-primary">Modifier</a>
-							
-
-						</div>
+								<p>{{booking.rating.createdAt | date}}</p>
+								{# <a id="editComment"  href="{{ path('comment_edit', {'id': booking.rating.id}) }}" class="btn btn-primary">Modifier</a> #}
+								
+							</div>
+					{% else %}
 						{% if date(booking.endDate) <= date() %}
 						<div class="row m-4" id="commentEdit" >
 							<div class="col">
@@ -54,8 +54,8 @@
 						</div>
 						{% else %}
 						<h5>Votre séjour n'est pas terminé, vous pourrez poster un avis à votre retour.</h5>
-						{% endif %}		
-
+						{% endif %}
+					{% endif %}
 				</div>
 				
 				
