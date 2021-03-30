@@ -7,7 +7,7 @@
 	<div class="collapse navbar-collapse" id="navbarColor01">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item active">
-				Dashboard
+				<a class="nav-link" href="{{path ('admin_ads_index')}}">Dashboard</a>
 			</li>
 			<li class="nav-item active">
 				<a class="nav-link" href="{{path ('admin_ads_index')}}">Annonces
@@ -34,7 +34,7 @@
 						<a class="dropdown-item" href="">Mon compte</a>
 						<a class="dropdown-item" href="">Modifier profil</a>
 						<a class="dropdown-item" href="">Modifier mon mdp</a>
-						<a class="dropdown-item" href="">Déconnexion</a>
+						<a class="dropdown-item" href="{{path('admin_account_logout')}}">Déconnexion</a>
 					</div>
 				</div>
 

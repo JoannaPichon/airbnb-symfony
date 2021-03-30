@@ -15,6 +15,19 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
+        admin:
+            anonymous: lazy
+            provider: in_database
+
+            form_login:
+                login_path: admin_account_login
+                check_path: admin_account_login
+                default_target_path: admin_ads_index
+            logout:
+                path: admin_account_logout
+                target: admin_account_login
+
         main:
             anonymous: lazy
             provider: in_database
