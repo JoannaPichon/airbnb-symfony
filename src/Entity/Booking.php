@@ -66,10 +66,6 @@ class Booking
      */
     private $comment;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Comment::class, inversedBy="booking", cascade={"persist", "remove"})
-     */
-    private $rating;
 
     
 

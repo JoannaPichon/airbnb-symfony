@@ -74,7 +74,6 @@ class AdController extends AbstractController
             //fonction upload de fichier déportée dans Services 
             $upload -> upload($ad, $manager);
 
-            
             $ad->setAuthor($this->getUser());
             $manager -> persist($ad);
             $manager -> flush();

@@ -1,0 +1,20 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% form_theme form with ['/ad/collection.html.twig'] %}
+
+{% block body %}
+	<div class="container mt-3">
+	
+		<h1>Modification du commentaire</h1>
+
+		{{ form_start(form) }}
+		
+		{{ form_row(form.rating, {'label':'Note /5'} ) }}
+		{{ form_row(form.content, {'label':'Contenu du commentaire'} ) }}
+		
+		<button type="submit" class="btn btn-success d-block mx-auto ">Modifier le commentaire</button>
+		{{ form_end(form) }}
+	</div>
+{% endblock %}

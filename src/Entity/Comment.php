@@ -9,8 +9,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
- * @UniqueEntity(fields={"booking"},
- * message="Un avis a déjà été posté pour cette réservation")
+ * 
  */
 class Comment
 {
@@ -50,11 +49,6 @@ class Comment
      */
     private $author;
 
-    ////////!\\\\\\\\\\
-    /**
-     * @ORM\OneToOne(targetEntity=Booking::class, mappedBy="rating", cascade={"persist", "remove"})
-     */
-    private $booking;
 
     public function getId(): ?int
     {

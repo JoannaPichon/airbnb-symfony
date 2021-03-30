@@ -20,20 +20,25 @@
 		</div>
 
 		<div class="row justify-content-center align-items-center">
-			<div class="col d-flex justify-content-center align-items-center">
-				<div class="card m-3" style="width: 18rem;">
-					<div class="card-header">
-						2 chambres 50€ par nuit<br/>
-						<p>Pas encore noté</p>
+			
+			{% for ad in ads %}
+				<div class="col d-flex justify-content-center align-items-center">
+					<div class="card m-3" style="width: 18rem;">
+						<div class="card-header">
+							{{ad.rooms}} chambres {{ad.price}}€ par nuit<br/>
+							{% include "partials/ratingStar.html.twig" with {'avgRatings': ad.getAvgRatings} %}
+						</div>
+						<img src="{{ad.coverImage}}" class="card-img-top" alt="...">
+						<div class="card-body text-center">
+							<h5 class="card-title">{{ad.title}}</h5>
+							<p class="card-text">{{ad.introduction}}</p>
+							<a href="{{path('ad_show', {'slug': ad.slug})}}" class="btn btn-primary">Voir l'annonce</a>
+						</div>
 					</div>
-					<img src="https://picsum.photos/seed/150/150" class="card-img-top" alt="...">
-					<div class="card-body text-center">
-						<h5 class="card-title">Bel appartment</h5>
-						<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nulla alias nihil impedit dicta illum similique dolores pariatur, magnam quis minus. Nisi blanditiis commodi, deleniti minima eum repudiandae nobis maiores.</p>
-						<a href="#" class="btn btn-primary">Voir l'annonce</a>
-					</div>
-				</div>
-			</div>
+				</div>	
+			{% endfor %}
+			
+			
 
 			<div class="col d-flex justify-content-center align-items-center">
 				<div class="card m-3" style="width: 18rem;">
