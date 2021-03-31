@@ -35,6 +35,18 @@ class AdRepository extends ServiceEntityRepository
     
     
     
+    public function findBestAuthors()
+    {
+        return $this->createQueryBuilder('a')
+            ->join('a.bookings', 'bookings')
+            ->addSelect('a')
+            ->groupBy('a.author')
+            ->orderBy('sum(bookings.id)', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     /*
     public function findOneBySomeField($value): ?Ad

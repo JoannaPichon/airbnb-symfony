@@ -45,16 +45,16 @@
 		</div>
 
 		<div class="row mb-4">
-			{% for author in authors %}
+			{% for ad in adsMostBooked %}
 			<div class="col d-flex justify-content-center align-items-center">
 				<div class="card m-3" style="width: 18rem;">
 					<div class="card-header">
-						{{author.firstName}} {{author.lastName}}
+						{{ad.author.firstName}} {{ad.author.lastName}}
 					</div>
 					<div class="card-body text-center">
-						<img src="{{author.picture}}" class="float-left" alt="...">
-						<p class="card-text text-right">{{author.introduction}}</p>
-						<a href="{{path('user_show', {'slug': author.slug})}}" class="btn btn-primary">Voir ses annonces</a>
+						<img src="{{ad.author.picture}}" class="float-left" alt="...">
+						<p class="card-text text-right">{{ad.author.introduction}}</p>
+						<a href="{{path('user_show', {'slug': ad.author.slug})}}" class="btn btn-primary">Voir ses annonces</a>
 					</div>
 				</div>
 			</div>

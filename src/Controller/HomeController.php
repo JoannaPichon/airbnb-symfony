@@ -15,7 +15,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(AdRepository $repo, UserRepository $repoU): Response
+    public function index(AdRepository $repo): Response
     {
         $ads = $repo->findBestAds();
     
@@ -24,16 +24,16 @@ class HomeController extends AbstractController
         // trier ad par nb de resa (count(ad->getbookings))
         // - recup les 3 premiers
 
-        // dump($ads);
+        dump($ads);
 
-        // $authors = $repoU->findBestAuthors();
+        $adsMostBooked = $repo->findBestAuthors();
 
-        // dump($authors);
-        // exit;
+        
+        
         
         return $this->render('home/index.html.twig', [
             'ads' => $ads,
-            // 'authors' => $authors
+            'adsMostBooked' => $adsMostBooked
         ]); 
     }
 }
