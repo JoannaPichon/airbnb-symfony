@@ -36,6 +36,19 @@ class UserRepository extends ServiceEntityRepository
     }
     */
 
+    // public function findBestAuthors()
+    // {
+    //     return $this->createQueryBuilder('u')
+    //         ->addSelect('u')
+    //         ->join('u', 'ad.author')
+    //         ->join('u.id', 'booking.ad')
+    //         ->groupBy('u.id')
+    //         ->orderBy('count(booking.id)', 'DESC')
+    //         ->setMaxResults(3)
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
 
     /*
     public function findOneBySomeField($value): ?User

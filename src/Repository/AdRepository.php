@@ -20,18 +20,18 @@ class AdRepository extends ServiceEntityRepository
     }
 
     
-    // public function findBestAds()
-    // {
-    //     return $this->createQueryBuilder('a')
-    //         ->join('a.comments', 'comments')
-    //         ->addSelect('a')
-    //         ->groupBy('a')
-    //         ->orderBy('avg(comments.rating)', 'DESC')
-    //         ->setMaxResults(5)
-    //         ->getQuery()
-    //         ->getResult()
-    //     ;
-    // }
+    public function findBestAds()
+    {
+        return $this->createQueryBuilder('a')
+            ->join('a.comments', 'comments')
+            ->addSelect('a')
+            ->groupBy('a')
+            ->orderBy('avg(comments.rating)', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     
     
     
