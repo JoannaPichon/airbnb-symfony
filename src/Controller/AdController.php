@@ -7,6 +7,7 @@ use App\Entity\Image;
 use App\Form\AnnonceType;
 use Cocur\Slugify\Slugify;
 use App\Entity\ImageUpload;
+use App\Entity\User;
 use Doctrine\ORM\Mapping\Id;
 use App\Repository\AdRepository;
 use App\Services\ImagesUploadService;

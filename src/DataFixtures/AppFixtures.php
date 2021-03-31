@@ -38,32 +38,27 @@ class AppFixtures extends Fixture
                     -> setEmail('mail@admin.fr')
                     -> setPicture('https://www.w3schools.com/howto/img_avatar.png')
                     -> setPassword($this->passwordEncoder->encodePassword($adminUser,'heyheyhey'))
-                    -> setIntroduction('Superbe appartement en plein coeur du centre ville de Paris')
-                    -> setDescription('Réservez un séjour pleines de surprises dans ce merveilleux appartement, avec vue splendide sur la station de RER nommée "Châtelet", d\'une taille de 13 mètres carrés.<br/>
-            Grâce à son spacieux salon dune taille de 5 mètres carrés, vous pourrez profiter d\'un espace de vie "cocooning" où tout est à portée de main. <br/>
-                Appréciez aussi le doux bruit des voisins qui ont la bienveillance de vous faire profiter du son haut de gamme de leur télévision Leader Price, en particulier durant les matchs de foot.<br/>
-                Bénéficiant d\'une magnifique baignoire tout-en-un d\'une longueur de 95 centimètres, observez la praticité que vous apporte la possibilité de se laver, faire ses besoins et se brosser les dents, tout ça, au même endroit.<br/>
-                Avec l\'option "Bed & Breakfast", disponible pour un surcoût de seulement 25€ par personne, vous pourrez bénéficier d\'un petit déjeuner, déposé avec amour sur le paillasson, comprenant une baguette de pain et un croissant. <br/>
-                Sur la table basse du salon, qui fait aussi office de table à repasser, vous trouverez à votre disposition un guide pour découvrir les meilleurs coins du quartier, comme par exemple le bois de Boulogne, où les meilleurs guides de Paris sauront vous conseiller pour votre balade.')
+                    -> setIntroduction('Admin du site')
+                    -> setDescription('C\'est moi qui gere le site, merci de ne pas le hacker')
                     -> setSlug('joanna-pichon')
                     -> addUserRole($adminRole);
         $manager->persist($adminUser);
 
         //boucle user 1-5
-        for ($k=0; $k <= 5; $k++) { 
+        for ($k=1; $k <= 5; $k++) { 
+            if ($k <= 4) {
+                $picture = "/uploads/avatar$k.png";
+            } else {
+                $picture = "/uploads/avatar1.png";
+            }
             $user = new User();
             $user   -> setFirstName('Jean'.$k)
                     -> setLastName('Dupond'.$k)
                     -> setEmail('jean'.$k.'.dupond'.$k.'@mail.fr')
-                    -> setPicture('https://www.w3schools.com/howto/img_avatar.png')
+                    -> setPicture($picture)
                     -> setPassword($this->passwordEncoder->encodePassword($user,'password'))
-                    -> setIntroduction('Superbe appartement en plein coeur du centre ville de Paris')
-                    -> setDescription('Réservez un séjour pleines de surprises dans ce merveilleux appartement, avec vue splendide sur la station de RER nommée "Châtelet", d\'une taille de 13 mètres carrés.<br/>
-            Grâce à son spacieux salon dune taille de 5 mètres carrés, vous pourrez profiter d\'un espace de vie "cocooning" où tout est à portée de main. <br/>
-                Appréciez aussi le doux bruit des voisins qui ont la bienveillance de vous faire profiter du son haut de gamme de leur télévision Leader Price, en particulier durant les matchs de foot.<br/>
-                Bénéficiant d\'une magnifique baignoire tout-en-un d\'une longueur de 95 centimètres, observez la praticité que vous apporte la possibilité de se laver, faire ses besoins et se brosser les dents, tout ça, au même endroit.<br/>
-                Avec l\'option "Bed & Breakfast", disponible pour un surcoût de seulement 25€ par personne, vous pourrez bénéficier d\'un petit déjeuner, déposé avec amour sur le paillasson, comprenant une baguette de pain et un croissant. <br/>
-                Sur la table basse du salon, qui fait aussi office de table à repasser, vous trouverez à votre disposition un guide pour découvrir les meilleurs coins du quartier, comme par exemple le bois de Boulogne, où les meilleurs guides de Paris sauront vous conseiller pour votre balade.')
+                    -> setIntroduction('Propriétaire chaleureux')
+                    -> setDescription('Passionné depuis toujours par la location de mon studio, je vous propose des séjours adaptés à vos besoins')
                     -> setSlug('Jean'.$k.'-'.'Dupond'.$k);
 
 
@@ -77,7 +72,7 @@ class AppFixtures extends Fixture
             
             //boucle ad 1-5
             for ($i=1; $i <= mt_rand(1,5) ; $i++) { 
-
+                
                 $ad = new Ad();
                 $ad -> setTitle('Titre de l\'annonce n°' . $i)
                     -> setSlug($slug . $i)
@@ -128,8 +123,7 @@ class AppFixtures extends Fixture
                                 ->setRating(mt_rand(0,5))
                                 ->setContent("Super séjour $j")
                                 ->setAuthor($user)
-                                ->setAd($ad)
-                                ->setBooking($booking);
+                                ->setAd($ad);
                         $manager->persist($comment);
                     }
                 }

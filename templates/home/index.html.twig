@@ -20,7 +20,6 @@
 		</div>
 
 		<div class="row justify-content-center align-items-center">
-			
 			{% for ad in ads %}
 				<div class="col d-flex justify-content-center align-items-center">
 					<div class="card m-3" style="width: 18rem;">
@@ -38,38 +37,7 @@
 				</div>	
 			{% endfor %}
 			
-			
-
-			<div class="col d-flex justify-content-center align-items-center">
-				<div class="card m-3" style="width: 18rem;">
-					<div class="card-header">
-						2 chambres 50€ par nuit<br/>
-						<p>Pas encore noté</p>
-					</div>
-					<img src="https://picsum.photos/seed/150/150" class="card-img-top" alt="...">
-					<div class="card-body text-center">
-						<h5 class="card-title">Bel appartment</h5>
-						<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nulla alias nihil impedit dicta illum similique dolores pariatur, magnam quis minus. Nisi blanditiis commodi, deleniti minima eum repudiandae nobis maiores.</p>
-						<a href="#" class="btn btn-primary">Voir l'annonce</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="col d-flex justify-content-center align-items-center">
-				<div class="card m-3" style="width: 18rem;">
-					<div class="card-header">
-						2 chambres 50€ par nuit<br/>
-						<p>Pas encore noté</p>
-					</div>
-					<img src="https://picsum.photos/seed/150/150" class="card-img-top" alt="...">
-					<div class="card-body text-center">
-						<h5 class="card-title">Bel appartment</h5>
-						<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nulla alias nihil impedit dicta illum similique dolores pariatur, magnam quis minus. Nisi blanditiis commodi, deleniti minima eum repudiandae nobis maiores.</p>
-						<a href="#" class="btn btn-primary">Voir l'annonce</a>
-					</div>
-				</div>
-			</div>	
-		</div>
+		</div>	
 
 
 		<div class="row mt-5">
@@ -77,35 +45,21 @@
 		</div>
 
 		<div class="row mb-4">
+			{% for author in authors %}
 			<div class="col d-flex justify-content-center align-items-center">
 				<div class="card m-3" style="width: 18rem;">
 					<div class="card-header">
-						Nom prénom
+						{{author.firstName}} {{author.lastName}}
 					</div>
 					<div class="card-body text-center">
-						<img src="https://picsum.photos/seed/50/50" class="float-left" alt="...">
-						<h5 class="card-title">Bel appartment</h5>
-						<p class="card-text text-right">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nulla alias nihil impedit dicta illum similique dolores pariatur, magnam quis minus. Nisi blanditiis commodi, deleniti minima eum repudiandae nobis maiores.</p>
-						<a href="#" class="btn btn-primary">Voir ses annonces</a>
+						<img src="{{author.picture}}" class="float-left" alt="...">
+						<p class="card-text text-right">{{author.introduction}}</p>
+						<a href="{{path('user_show', {'slug': author.slug})}}" class="btn btn-primary">Voir ses annonces</a>
 					</div>
 				</div>
 			</div>
+			{% endfor %}
 
-			<div class="col d-flex justify-content-center align-items-center">
-				<div class="card m-3" style="width: 18rem;">
-					<div class="card-header">
-						Nom prénom
-					</div>
-					<div class="card-body text-center">
-						<img src="https://picsum.photos/seed/50/50" class="float-left" alt="...">
-						<h5 class="card-title">Bel appartment</h5>
-						<p class="card-text text-right">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nulla alias nihil impedit dicta illum similique dolores pariatur, magnam quis minus. Nisi blanditiis commodi, deleniti minima eum repudiandae nobis maiores.</p>
-						<a href="#" class="btn btn-primary">Voir ses annonces</a>
-					</div>
-				</div>
-			</div>
-
-			
 		</div>
 
 
