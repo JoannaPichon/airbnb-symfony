@@ -1,0 +1,33 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <h1>Tableau de bord</h1>
+    <div class="row">
+        <div class="col">
+            <div class="card card-body bg-primary text-white text-center">
+                {{users}} utilisateurs
+            </div>
+        </div>
+        <div class="col">
+            <div class="card card-body bg-info text-white text-center">
+                {{ads}} annonces
+            </div>
+        </div>
+        <div class="col">
+            <div class="card card-body bg-warning text-white text-center">
+                {{bookings}} réservations
+            </div>
+        </div>
+        <div class="col">
+            <div class="card card-body bg-success text-white text-center">
+                {{ratings}} avis
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -8,4 +8,5 @@
         "php": "html",
         "js": "js"
     },
+    "editor.wordWrapColumn": 100,
 }
