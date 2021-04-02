@@ -28,8 +28,9 @@ class HomeController extends AbstractController
 
         $adsMostBooked = $repo->findBestAuthors();
 
-        
-        
+        foreach ($adsMostBooked as $ad) {
+            dump(count($ad->getBookings()));
+        }
         
         return $this->render('home/index.html.twig', [
             'ads' => $ads,

@@ -41,7 +41,7 @@ class AdRepository extends ServiceEntityRepository
             ->join('a.bookings', 'bookings')
             ->addSelect('a')
             ->groupBy('a.author')
-            ->orderBy('sum(bookings.id)', 'DESC')
+            ->orderBy('count(distinct bookings)', 'DESC')
             ->setMaxResults(5)
             ->getQuery()
             ->getResult()

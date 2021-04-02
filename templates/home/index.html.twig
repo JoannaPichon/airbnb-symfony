@@ -16,7 +16,7 @@
 		</div>
 
 		<div class="row">
-			<h2>Nos appartements stars</h2>
+			<h2>Nos meilleures annonces</h2>
 		</div>
 
 		<div class="row justify-content-center align-items-center">
@@ -53,7 +53,9 @@
 					</div>
 					<div class="card-body text-center">
 						<img src="{{ad.author.picture}}" class="float-left" alt="...">
-						<p class="card-text text-right">{{ad.author.introduction}}</p>
+						<p class="card-text text-right">{{ad.author.introduction}}<br/>
+						{{ad.bookings | length}} réservations
+						</p>
 						<a href="{{path('user_show', {'slug': ad.author.slug})}}" class="btn btn-primary">Voir ses annonces</a>
 					</div>
 				</div>
